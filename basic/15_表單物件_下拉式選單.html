@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <select v-model="selectedYear" id="">
+            <option v-for="year in 2023-1920" :value="year+1920">{{year+1920}}</option>
+        </select>
+        <select v-model="selectedMonth" id="">
+            <option v-for="month in 12" :value="month">{{month}}</option>
+        </select>
+  
+        <div>
+            <p>當前:{{selectedYear}} /{{selectedMonth}}</p> 
+         </div>
+    </div>
+ 
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    month: '',
+                    selectedMonth:'',
+                    selectedYear:''
+
+                }
+
+            }, methods: {
+               
+            }, computed: {
+            
+            },
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

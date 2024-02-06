@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <!-- 不使用Vue的寫法 -->
+        <!-- <input type="radio" name="gender" value="male" checked> Male
+        <input type="radio" name="gender" value="female"> Female
+        <input type="radio" name="gender" value="others"> Others -->
+
+        <input type="radio" v-model="gender" value="male" checked> Male
+        <input type="radio" v-model="gender" value="female"> Female
+        <input type="radio" v-model="gender" value="others"> Others
+        <p>嗜好</p>
+        <input type="checkbox" v-model="interest" value="sleep"> 睡覺
+        <input type="checkbox" v-model="interest" value="game"> 電動
+        <input type="checkbox" v-model="interest" value="read"> 閱讀
+        <input type="checkbox" v-model="interest" value="coding"> 寫程式
+        <input type="checkbox" v-model="interest" value="trip"> 旅遊
+        <input type="checkbox" v-model="interest" value="diving"> 潛水
+
+        {{interest}}
+        <br>
+        <div>
+            <p>{{gender}}</p>
+        </div>
+
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    gender: '',
+                    interest: []
+                }
+
+            }, methods: {
+                setMessage(event) {
+                    this.message = event.target.value
+                }, action() {
+
+                }
+            }, computed: {
+                setCSS() {
+                    return {
+                        whiteSpace: 'pre',
+                        font: '13.3333px monospace'
+                    }
+                }
+            },
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

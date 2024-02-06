@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <!-- 使用multiple代表可以選複數檔案 -->
+
+        <!-- <input type="file" @change="fileChange" multiple> -->
+        <!-- 檔案上傳 發生change事件 -->
+        <input type="file" @change="fileChange">
+        <img :src="imgURL" alt="">
+
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    imgURL: ''
+
+                }
+
+            }, methods: {
+                fileChange(event) {
+                    let file = event.target.files[0]
+                    console.log(file)
+                    let readFile = new FileReader()
+                    // 此時會發生Load事件，需要建立事件聆聽
+                    readFile.readAsDataURL(file)
+                    // readFile.addEventListener('load', function () {
+                    //不能這樣寫，在這邊的this指的是e.target而不是Vue
+                    //不要在vue裡面使用function(){}，請改用箭頭函式
+                    // this.imgUR = readFile.result
+
+                    // 可以使用箭頭函式
+
+                    // 呼叫外部檔案
+                    // readFile.addEventListener('load')
+
+                    // })
+                    // 可以使用箭頭函式
+                    // readFile.addEventListener('load',()=> this.imgURL= readFile.result)
+                    // 呼叫外部檔案
+                    readFile.addEventListener('load', this.loadImage)
+
+                }, loadImage(e) {
+                    this.imgURL = e.target.result
+                }
+
+            }, computed: {
+
+            },
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
