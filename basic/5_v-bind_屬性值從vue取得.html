@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <!-- 要加上v-bind -->
+        <img src="imgURL" alt="name">
+        <!-- 要加上v-bind -->
+        <img v-bind:src="imgURL" v-bind:alt="name">
+        <!-- v-bind的縮寫 -->
+        <img :src="imgURL" :alt="name">
+
+        <hr v-for="color in colors" v-bindcolor="color">
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    message: 'Hello Vue',
+                    colors:['red','orange','yellow','blue','indigo','violet'],
+                    imgURL:'https://stickershop.line-scdn.net/stickershop/v1/product/24312/LINEStorePC/main.png?v=1',
+                    name:'蠟筆小新'
+
+                }
+
+            }
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

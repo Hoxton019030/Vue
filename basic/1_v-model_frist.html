@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->>
+        <!-- {{}} 兩個大括號叫做 mustache -->
+        <h1>{{message}}</h1>
+        <!-- v-model 雙向綁定 -->
+        <input type="text" v-model="message">
+    </div>
+
+    <script>
+        //第一步
+        Vue.createApp()
+        //第二步 掛載
+        Vue.createApp().mount()
+        //第三步 大括號就是Object 會有屬性跟方法
+        // Vue.createApp({}).mount('#app')
+
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    message: 'Hello Vue'
+                }
+
+            }
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->>
+        <!-- {{}} 兩個大括號叫做 mustache -->
+        <h1>{{message}}</h1>
+        <p v-show="loading"> Loading(v-show)</p> <!--V-show是操作CSS的display-->>
+        <p v-if="loading"> Loading(v-if)</p> <!--v-if 是連DOM都不載入-->>
+        <!-- v-model 雙向綁定 -->
+        <input type="text" v-model="message">
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    message: 'Hello Vue',
+                    score:100,
+                    loading: true
+                    // if  false, check devtools --> Elements
+                }
+
+            }
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

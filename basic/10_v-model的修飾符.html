@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <!-- v-model的修飾符
+        lazy: trigger when onblur 等待輸入完才產生結果
+     -->
+    <div id="app"> <!--HTML DOM Template-->
+        <div>
+        Message: <input type="text" v-model="message"> {{message}}
+    </div>
+        Message(lazy): <input type="text" v-model.lazy="message"> {{message}}
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    message: '',
+                    num:0,
+                    name:'',
+                }
+
+            }
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

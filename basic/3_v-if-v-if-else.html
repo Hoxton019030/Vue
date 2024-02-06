@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <h1> What did you get in Vue</h1>
+        Your score: <input type="text" v-model="score">
+        <p v-if="score<0 || score>100">IVALIDATE!</p>
+        <p v-else-if="score>=70">PASS!</p>
+        <p v-else>NOT PASS</p>
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    message: 'Hello Vue',
+                    score:100,
+                }
+
+            }
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

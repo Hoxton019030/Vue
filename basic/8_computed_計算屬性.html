@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <p>
+            身高：<input v-model="height">
+        </p>
+        <p>
+            體重： <input v-model="weight">
+        </p>
+        <p>
+            BMI：<span>{{calculate}}</span>
+        </p>
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    height:0,
+                    weight:0,
+                    // calculate: this.weight / (Math.pow(this.height /100,2))
+                    
+                }
+            },methods: { //函數大部分放這裡！
+                
+                
+            },computed: { // 函數也可以放這裡！但是放在這裡的函數(方法) 不用傳參數，一定有傳回值
+                calculate(){
+                    if(this.height >0 && this.weight >0){
+                        return t his.weight/ Math.pow(this.height / 100 ,2)
+                    }
+                    return 0;
+                }
+            },
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

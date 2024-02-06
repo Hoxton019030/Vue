@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <!-- 使用v-model做雙向綁定 -->
+        <!-- 如果不使用v-model 如何做雙向綁定 -->
+        <input type="text">
+        <h3>{{messsage}}</h3>
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    message:''
+                }
+
+            }
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

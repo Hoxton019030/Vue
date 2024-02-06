@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <!-- function沒有傳值，不要寫小括號 -->
+        <!-- <li v-for="color in colors" v-on:click="showColor(color)">
+            {{color}}
+        </li> -->
+        <!-- function沒有傳值，不要寫小括號 -->
+        <!-- 可以用@替換掉v-on -->
+        <li v-for="color in colors" @click="showColor(color)">
+            {{color}}
+        </li>
+        <button @click="drawing">Click Me</button>
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    message: 'Hello Vue',
+                    colors:['red','orange','yellow','blue','indigo','violet'],
+                    imgURL:'https://stickershop.line-scdn.net/stickershop/v1/product/24312/LINEStorePC/main.png?v=1',
+                    name:'蠟筆小新'
+                }
+            },methods: { //function大部分放這裡
+                showColor(theColor){
+                    // alert('Hello,' + theColor + '!')
+                    // 可以用比較新的寫法 更簡單一點
+                    alert(`Hello,${theColor} !`);
+                },drawing(){
+                    alert('幹')
+                }
+            },
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
