@@ -12,8 +12,13 @@
     <div id="app"> <!--HTML DOM Template-->
         <!-- 使用v-model做雙向綁定 -->
         <!-- 如果不使用v-model 如何做雙向綁定 -->
-        <input type="text">
-        <h3>{{messsage}}</h3>
+        <!-- 物件、事件、處理函數 -->
+        <input type="text" @keyup="setMessage">
+        <h3>{{message}}</h3>
+
+        <textarea name="id" v-model="message" cols="20" rows="5" @click="action"></textarea>
+        <!-- :style 保持CSS 屬性 -->
+        <p :style="setCSS">{{message}}</p>
     </div>
 
     <script>
@@ -24,7 +29,20 @@
                     message:''
                 }
 
-            }
+            },methods: {
+                setMessage(event){
+                this.message=event.target.value
+                },action(){
+
+                }
+            },computed: {
+                setCSS(){
+                    return {
+                        whiteSpace: 'pre',
+                        font: '13.3333px monospace'
+                    }
+                }
+            },
 
         }).mount('#app')
     </script>
