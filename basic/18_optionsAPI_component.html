@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <h1>{{message}}</h1>
+        <button @click="action">Click Me</button>
+    </div>
+
+    <script>
+        // Options API
+        // Vue.createApp({
+        //     // data: function(){}
+        //     data() { //Vue的變數放這邊
+        //         return {
+        //             message:'Hello',
+        //             score: 0,
+        //             loading: true
+        //         }
+
+        //     },methods: {
+        //             action(){
+        //                 alert(`${this.message} Vue!`)
+        //             }
+        //         },
+
+        // }).mount('#app')
+
+
+        // Composition API
+        // 使用這種寫法 vue只會去追蹤return 物件的狀態 如果沒用到就不會追蹤 有時候有些local Variable不需要被trace
+        const App = {
+            //setUp 類似啟動程式
+            setup() {
+                const message = Vue.ref('Hello');
+                const score = Vue.ref(0);
+                let loading = true;
+
+                // IIFE
+                // 用value取值
+                const action = ()=> alert(`${message.value} Vue!`)
+                
+                return {
+                    message,
+                    action
+                }
+            }
+        }
+        Vue.createApp(
+            App
+        ).mount('#app')
+    </script>
+</body>
+
+</html>

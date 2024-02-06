@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <h1>{{message}}</h1>
+        <button @click="action">Click Me</button>
+    </div>
+
+    <script>
+        // 使用ref 讓物件註冊到Vue中 能被偵測到
+        const {ref} = Vue
+        const App = { //建立App物件，該物件放的是Vue的屬性或方法
+            //setUp 類似啟動程式
+            setup() {
+                //寫法1
+                // ref(): 可使用任何資料型態，要用.value來取值，但是對於Array和 Object不能做深層監聽
+                // reactive(): 只能用Array Object，可做深層監聽，不需要用.value來取值
+                const message = Vue.ref('Hello');
+                const score = Vue.ref(0);
+                let loading = true;
+
+                //有第二種寫法 請參照Vue Day3  22:00
+
+
+                // IIFE
+                // 用value取值
+                const action = ()=> alert(`${message.value} Vue!`)
+                
+                return {
+                    message,
+                    action
+                }
+            }
+        }
+        Vue.createApp(
+            App
+        ).mount('#app')
+    </script>
+</body>
+
+</html>
