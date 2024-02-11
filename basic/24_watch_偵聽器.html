@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <!-- watch 用來偵聽 data和 computed的變化 -->
+    <div id="app"> <!--HTML DOM Template-->
+    <p>{{numSqquare}}</p>
+    <input type="text" v-model.number.lazy="num">
+
+    </div>
+    <script>
+
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    num:0,
+                }
+            },computed: {
+                numSqquare(){
+                    return Math.pow(this.num,2);
+                }
+            },
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

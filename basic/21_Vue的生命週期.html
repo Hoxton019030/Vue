@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <button @click="addCount">Add</button>
+        <button>Delete</button>
+        {{count}}
+    </div>
+
+    <script>
+        Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    count:0
+                }
+
+            },methods: {
+                addCount(){
+                    this.count +=1
+                }
+            },computed: {
+                
+            }
+            // 各種生命週期
+            ,beforeCreate() {
+                console.log(`beforeCreate() ---> count :${this.count} `)
+                
+            },created() { //蠻常用的
+                console.log(`created() ---> count :${this.count} `)
+            },mounted() { //常用 非同步大部分放在這邊
+                console.log(`mounted() ---> count :${this.count} `)
+                
+            },update(){ //常用
+                console.log(`updated() ---> count :${this.count} `)
+
+            },unmounted() {
+                console.log(`unmounted() ---> count :${this.count} `)
+            },
+
+            }
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
