@@ -10,18 +10,42 @@
 
 <body>
     <div id="app"> <!--HTML DOM Template-->
+        <my-component> <!-- kebab-case-->
+        </my-component>
+        <counter>
+
+        </counter>
     </div>
 
     <script>
-        Vue.createApp({
+        const vueApp = Vue.createApp({
             // data: function(){}
             data() { //Vue的變數放這邊
                 return {
                 }
 
+            },
+            // local Component
+            components: {
+                //組建名稱
+                'my-component': {
+                    template: `<h1 style="color:red;">Hello</h1>`
+                }
             }
 
-        }).mount('#app')
+        })
+
+        //global component
+        // 語法:
+        // vueApp.components('組件名稱',{})
+        // xxx.component 註冊組件
+        vueApp.component('counter',{
+            template : `
+            <h1>野原新之助<h1>
+            `
+        })
+
+        vueApp.mount('#app')
     </script>
 </body>
 

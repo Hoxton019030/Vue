@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<!-- Vue Day3 2:00:00 -->
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <todo-list></todo-list>
+    </div>
+
+    <script>
+        const vueApp = Vue.createApp();
+        // vueApp.component('組件',{內容})
+        vueApp.component('todo-list', {
+            data() {
+                return {
+                    tasks: [],
+                }
+            },
+            methods: {
+                abcTask(task) {
+                    this.tasks.push(task)
+                },removeTask(index){
+                    this.tasks.splice(index,1)
+                }
+
+            },
+            template:
+                `
+            <h1>Todo List</h1>
+            <todo-input @abc="abcTask"></todo-input>
+            <ol>
+                <todo-item v-for="(task,index) in tasks" :xyz="task" @click="removeTask(index)"></todo-item>
+            </ol>
+            
+            `
+        })
+
+        vueApp.component('todo-input', {
+            data() {
+                return {
+                    task: ''
+                }
+            },
+            methods: {
+                submitData(e) {
+                    //取消預設事件
+                    e.preventDefault();
+
+
+                    // 把資料丟到上層使用$emit
+                    // this.$emit( `自訂事件`,傳值1)  
+                    this.$emit(`abc`, this.task)
+                }
+            },
+            template:
+                `
+            <form @submit="submitData">
+                <input type="text" v-model="task">
+                <button>Submit</button>
+            </form>
+            `
+        })
+
+        vueApp.component('todo-item', {
+            props:['xyz'],
+            template:
+            `
+            <li>{{xyz}}</li>
+
+            `
+        })
+
+        vueApp.mount('#app')
+    </script>
+</body>
+
+
+</html>

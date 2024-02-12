@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <button @click="content = 'name'">Name</button>
+        <button @click="content = 'date'">Date</button>
+        <button @click="content = 'lessons'">Lessons</button>
+        <button @click="content = 'apply'">Apply</button>
+        <!-- 組件出現在這邊 動態組件 -->
+        <keep-alive>
+            <component :is="content"></component>
+        </keep-alive>
+    </div>
+
+    <script>
+        const vueApp = Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    content: 'name'
+                }
+
+            }, components: {
+                name: {
+                    template: `<p>Your name:<input></p>`
+                }, date: {
+                    template:
+                        `<p> 
+                        <input type="checkbox"> Morning
+                        <input type="checkbox"> Afternoon
+                        <input type="checkbox"> Evening
+                         </p>`
+                }, lessons: {
+                    template:
+                        `<p> 
+                        <input type="checkbox"> HTML
+                        <input type="checkbox"> CSS
+                        <input type="checkbox"> Javascript
+                        <input type="checkbox"> JQuery
+                        <input type="checkbox"> HTML5
+                        <input type="checkbox"> VueJS
+                         </p>`
+                }, apply: {
+                    template:
+                        `<p> 
+                            <textarea></textarea>
+                         </p>
+                         <button>Submit</button>
+                         `
+
+                }
+
+            }
+
+        });
+
+        vueApp.mount('#app')
+    </script>
+</body>
+
+</html>
