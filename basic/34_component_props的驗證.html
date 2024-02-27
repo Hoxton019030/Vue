@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+
+<!-- vue day 4  1:03:00-->
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <button @click="count+=1">點我</button>
+        <h3>Root ==> {{count}}</h3>
+        <counter :init="count" @child-emit="makeSync"></counter>
+    </div>
+
+
+    <script>
+        // <!-- vue day 4  1:03:00-->
+        const vueApp = Vue.createApp({
+            data() { //Vue的變數放這邊
+                return {
+                    count: 3
+                }
+            },methods: {
+                makeSync(count){
+                    alert(count)
+                    this.count=count
+                }
+            },
+
+        });
+        vueApp.component('counter', {
+            props:[`init`],
+            data() {
+                return {
+                    count: this.init
+                }
+            }, template:
+                `
+                <button @click="count+=1">點我</button>
+                <button @click="sync">同步上層資料</button>
+                <h3>counter : {{count}}</h3>
+                `
+                ,
+                methods:{
+                    sync(){
+                    // this.$emit( `自訂事件`,傳值1)  
+                    this.$emit(`child-emit`,this.count)
+                }
+                }
+                
+        })
+        vueApp.mount('#app')
+    </script>
+</body>
+
+</html>

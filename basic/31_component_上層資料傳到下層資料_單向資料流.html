@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <my-component message="Hello" text="VueJS" somethingsomthing="測試"></my-component>
+        <your-component the-message="Hello" the-text="World"></your-component>
+    </div>
+
+    <script>
+        // vue day 4 5:00S
+        const vueApp = Vue.createApp({});
+
+        vueApp.component('my-component',{
+            props:[`message`,`text`,`somethingsomthing`],
+            template:
+            `
+            <h1>{{message}} {{text}} {{somethingsomthing}}</h1>
+            `
+        })
+
+        vueApp.component('your-component',{
+            props:[`the-message`,`the-text`],
+            template:
+            `
+            <h1> {{theMessage}} {{theText}} </h1> 只能使用駝峰式命名！！！！不能用kebab-case命名法 不然read不到
+            `
+        })
+
+
+        vueApp.mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <ol>
+            <li v-for="teddy in teddyInfo" :key="teddy.id">
+                {{teddy.title}}: {{teddy.price}}
+            </li>
+        </ol>
+    </div>
+
+    <!-- 解決v-if 和 v-for衝突 使用 computed 回完篩選後的結果再render -->
+    <h1>使用</h1>
+    <div id="app2"> <!--HTML DOM Template-->
+        <ol>
+            <li v-for="teddy in filterData" :key="teddy.id">
+                {{teddy.title}}: {{teddy.price}}
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        const vueApp = Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    teddyInfo: [
+                        { id: 'A1001', title: 'Formosa', price: 10000 },
+                        { id: 'A1002', title: 'Teddy Brown', price: 5000 },
+                        { id: 'A1003', title: 'Teddy Cinnamon', price: 7000 },
+                    ]
+                }
+
+            }
+            , computed: {
+                filterData() {
+                    return this.teddyInfo.filter(data => data.price > 7000)
+                }
+            }
+
+        });
+
+        const vueApp2 = Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                    teddyInfo: [
+                        { id: 'A1001', title: 'Formosa', price: 10000 },
+                        { id: 'A1002', title: 'Teddy Brown', price: 5000 },
+                        { id: 'A1003', title: 'Teddy Cinnamon', price: 7000 },
+                    ]
+                }
+
+            }
+            , computed: {
+                filterData() {
+                    return this.teddyInfo.filter(data => data.price > 7000)
+                }
+            }
+
+        });
+
+        vueApp.mount('#app')
+        vueApp2.mount('#app2')
+    </script>
+</body>
+
+</html>

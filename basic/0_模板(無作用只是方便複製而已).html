@@ -13,7 +13,7 @@
     </div>
 
     <script>
-        Vue.createApp({
+        const vueApp=Vue.createApp({
             // data: function(){}
             data() { //Vue的變數放這邊
                 return {
@@ -21,7 +21,9 @@
 
             }
 
-        }).mount('#app')
+        });
+
+        vueApp.mount('#app')
     </script>
 </body>
 
