@@ -1,10 +1,10 @@
 <script>
 import TodoInput from "./TodoInput.vue";
-import TodoItemVue from "./TodoItem.vue";
+import TodoItem from "./TodoItem.vue";
 export default {
   components: {
     TodoInput,
-    TodoItemVue,
+    TodoItem,
   },
   data() {
     return {
@@ -25,7 +25,9 @@ export default {
 <template>
   <h1>Todo List</h1>
   <todo-input @abc="abcTask"></todo-input>
-  <!-- <ol>
-                <todo-item v-for="(task,index) in tasks" :xyz="task" @click="removeTask(index)"></todo-item>
-            </ol> -->
+
+
+  <ol>
+    <todo-item v-for="(task, index) in tasks" :xyz="task" @click="removeTask(index)"></todo-item>
+  </ol>
 </template>
