@@ -39,9 +39,13 @@
         const App = {
             //setUp 類似啟動程式
             setup() {
+                //寫法1
                 const message = Vue.ref('Hello');
                 const score = Vue.ref(0);
                 let loading = true;
+
+                //有第二種寫法 請參照Vue Day3  22:00
+
 
                 // IIFE
                 // 用value取值

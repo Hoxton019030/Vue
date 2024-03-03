@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <style>
+        .headerLink{
+            font: 36px ;
+            text-align: center;
+        }
+        .content{
+            width: 90%;
+            height: 600px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<!-- Vue Day5 上午內容 -->
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <!-- <a href="">Home</a>
+        <a href="">About</a>
+        <a href="">Products</a> -->
+
+        <p class="headerLink">
+            <router-link to="/">Home</router-link> |
+            <router-link to="/about">About</router-link>|
+            <router-link to="/products">Products</router-link>|
+        </p>
+        <div class="content">
+            <router-view></router-view>
+        </div>
+    </div>
+
+    <script>
+
+        // step 1 define route components
+        // 語法:
+        // const 組件名稱={
+            // data(){},
+            // methods:{},
+            // template:``
+        // }
+
+        const Home={
+            template:'<div><h1>$Home$</h1></div>'
+        }
+        const About={
+            template:'<div><h1>@About@</h1></div>'
+        }
+        const Products={
+            template:'<div><h1>&Products&</h1></div>'
+        }
+
+        //step 2 define routes( 在哪個路徑下，render哪個組件)
+        const routes=[
+            // 在什麼路徑底下 Render什麼組件
+            {path:'/',component:Home},
+            {path:'/about',component:About},
+            {path:'/products',component:Products}
+        ]
+
+        //step3 create a router instance and pass the routes option
+        const router= VueRouter.createRouter({
+            history: VueRouter.createWebHistory(),
+            // history: VueRouter.createWebHashHistory(),
+            routes
+        })
+        const vueApp=Vue.createApp({
+            // data: function(){}
+            data() { //Vue的變數放這邊
+                return {
+                }
+
+            }
+
+        });
+        vueApp.use(router)
+        vueApp.mount('#app')
+    </script>
+</body>
+
+</html>
