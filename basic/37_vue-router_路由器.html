@@ -51,18 +51,44 @@
             template:'<div><h1>$Home$</h1></div>'
         }
         const About={
-            template:'<div><h1>@About@</h1></div>'
+            template:`<div>
+                <h1>@About@</h1>
+                <hr>
+                <router-link to="/about/us">關於我們</router-link> |
+                <router-link to="/about/other">關於其他</router-link>
+                <p></p>
+<router-view/> 
+                </div>`
         }
+        // Products組件
         const Products={
-            template:'<div><h1>&Products&</h1></div>'
+            template:`<div>
+                <h3>&Products&</h3>
+                <p>{{$route.params.sn}}</p>
+                </div>`
         }
+        const AboutUs={
+            template:'<div><h3>$About Us$</h3></div>'
+        }
+        const AboutOther={
+            template:'<div><h3>$About Other$</h3></div>'
+        }
+    
+
+
 
         //step 2 define routes( 在哪個路徑下，render哪個組件)
         const routes=[
             // 在什麼路徑底下 Render什麼組件
             {path:'/',component:Home},
-            {path:'/about',component:About},
-            {path:'/products',component:Products}
+            {path:'/about',component:About,children:[
+                // 在什麼路徑底下render什麼組件
+                {path:'us',component: AboutUs},
+                {path:'other',component: AboutOther}
+            ]},
+            {path:'/products',component:Products},
+            {path:'/products/:sn' // sn是自定義名稱 serial number ，也可以叫item var之類的你開心就好
+            ,component:Products}
         ]
 
         //step3 create a router instance and pass the routes option
