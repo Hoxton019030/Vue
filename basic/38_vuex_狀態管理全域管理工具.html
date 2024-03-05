@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vuex@4"></script>    
+</head>
+
+<body>
+    <div id="app"> <!--HTML DOM Template-->
+        <button @click="update">Add</button>
+        <h3>{{count}}</h3>
+    </div>
+<!-- https://drive.google.com/drive/folders/1S1Mk7BwDhFU4vCcj6Lz1y7Hhqg1mm3y0 -->
+    <script>
+        const { ref,computed} = Vue
+        const {createStore} = Vuex
+
+        const store= createStore({
+            state(){//類似data,變數放這邊
+                return{
+                    count:0,
+                    loading:true
+                }
+            },
+            //只能透過mutation去存取state的資料
+            mutations:{ //類似methods
+                updateState(state,payload){
+                    alert(payload)
+                    state.count ++
+                },
+            },
+            getters:{},// 類似computed
+            actions:{} //類似 mounted
+        })
+
+        const App ={
+            setup() {
+                // Vue自己管理資料
+                // const count = ref(0)
+                // const update = () => count.value++
+                // return{
+                //     count,
+                //     update,
+                // }
+
+                // 交給Vuex管理資料
+                const count = computed(() => store.state.count)
+                const update = () => store.commit('updateState',5)
+            
+                return{
+                    count,
+                    update,
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app')
+
+        // vueApp.use(router)
+        // vueApp.mount('#app')
+    </script>
+</body>
+
+</html> 
